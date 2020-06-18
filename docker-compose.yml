@@ -10,6 +10,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - ./db/mysql/:/var/lib/mysql/
 
   web:
     build:

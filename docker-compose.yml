@@ -9,3 +9,6 @@ services:
     ports:
       - ${WEB_SERVER_PORT}:7080
       - ${WEB_HTML_PORT}:${WEB_HTML_EXPOSE_PORT}
+    volumes:
+      - ./web/lsws/admin/conf/:/usr/local/lsws/admin/conf/
+      - ./web/lsws/conf/:/usr/local/lsws/conf/

@@ -1,5 +1,16 @@
 version: '3'
 services:
+  db:
+    build:
+      args:
+        DB_SERVER_VERSION: ${DB_SERVER_VERSION}
+      context: ./db/
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+
   web:
     build:
       args:

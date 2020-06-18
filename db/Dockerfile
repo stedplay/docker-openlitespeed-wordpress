@@ -1,0 +1,2 @@
+ARG DB_SERVER_VERSION
+from mariadb:${DB_SERVER_VERSION}-bionic

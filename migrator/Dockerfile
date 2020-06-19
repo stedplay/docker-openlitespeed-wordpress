@@ -1,0 +1,2 @@
+ARG MIGRATOR_PHP_VERSION
+from welaika/wordmove:php${MIGRATOR_PHP_VERSION}

@@ -48,3 +48,14 @@ services:
       - ./web/lsws/admin/conf/:/usr/local/lsws/admin/conf/
       - ./web/lsws/conf/:/usr/local/lsws/conf/
       - ./web/html/:/var/www/vhosts/localhost/html/
+
+  migrator:
+    build:
+      args:
+        MIGRATOR_PHP_VERSION: ${MIGRATOR_PHP_VERSION}
+      context: ./migrator/
+    depends_on:
+      - web
+    tty: true
+    volumes:
+      - ./web/html/:/var/www/html/

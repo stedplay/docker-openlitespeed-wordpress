@@ -21,6 +21,11 @@ services:
       context: ./web/
     environment:
       LOCALE: ${LOCALE}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PREFIX: ${DB_PREFIX}
       WORDPRESS_VERSION: ${WORDPRESS_VERSION}
       WORDPRESS_SITEURL_DIR: ${WORDPRESS_SITEURL_DIR}
     ports:

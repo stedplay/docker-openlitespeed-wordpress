@@ -11,6 +11,9 @@ RUN php_ini_path=$(php --ini | grep 'Loaded Configuration File:' | grep -o /.*ph
   sed -i "s/^post_max_size = .*$/post_max_size = ${WEB_PHP_UPLOAD_MAX_FILESIZE}/" ${php_ini_path}  && \
   sed -i "s/^upload_max_filesize = .*$/upload_max_filesize = ${WEB_PHP_UPLOAD_MAX_FILESIZE}/" ${php_ini_path}
 
+# Set terminal size to avoid folding typied command.
+RUN echo 'stty rows 50 cols 200' >> /root/.bashrc
+
 COPY ./script/cmd.sh /cmd.sh
 RUN chmod +x /cmd.sh
 CMD ["/cmd.sh"]

@@ -19,6 +19,8 @@ services:
         WEB_SERVER_VERSION: ${WEB_SERVER_VERSION}
         WEB_PHP_VERSION: ${WEB_PHP_VERSION}
       context: ./web/
+    depends_on:
+      - db
     environment:
       LOCALE: ${LOCALE}
       DB_HOST: ${DB_HOST}

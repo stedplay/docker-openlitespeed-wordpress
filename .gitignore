@@ -1,3 +1,4 @@
 /db/mysql/
+/migrator/conf/movefile.yml
 /web/html/
 /web/lsws/

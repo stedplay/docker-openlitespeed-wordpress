@@ -58,5 +58,6 @@ services:
       - web
     tty: true
     volumes:
+      - ./migrator/conf/:/html/
       - ./web/html/:/var/www/html/
       - ~/.ssh:/tmp/.ssh

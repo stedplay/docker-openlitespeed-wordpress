@@ -19,6 +19,7 @@ services:
       args:
         WEB_SERVER_VERSION: ${WEB_SERVER_VERSION}
         WEB_PHP_VERSION: ${WEB_PHP_VERSION}
+        WEB_PHP_UPLOAD_MAX_FILESIZE: ${WEB_PHP_UPLOAD_MAX_FILESIZE}
       context: ./web/
     depends_on:
       - db

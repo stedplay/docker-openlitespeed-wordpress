@@ -29,3 +29,4 @@ services:
     volumes:
       - ./web/lsws/admin/conf/:/usr/local/lsws/admin/conf/
       - ./web/lsws/conf/:/usr/local/lsws/conf/
+      - ./web/html/:/var/www/vhosts/localhost/html/

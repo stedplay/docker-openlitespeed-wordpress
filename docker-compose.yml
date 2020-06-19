@@ -19,6 +19,10 @@ services:
         WEB_SERVER_VERSION: ${WEB_SERVER_VERSION}
         WEB_PHP_VERSION: ${WEB_PHP_VERSION}
       context: ./web/
+    environment:
+      LOCALE: ${LOCALE}
+      WORDPRESS_VERSION: ${WORDPRESS_VERSION}
+      WORDPRESS_SITEURL_DIR: ${WORDPRESS_SITEURL_DIR}
     ports:
       - ${WEB_SERVER_PORT}:7080
       - ${WEB_HTML_PORT}:${WEB_HTML_EXPOSE_PORT}

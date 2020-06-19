@@ -1,3 +1,6 @@
 ARG WEB_SERVER_VERSION
 ARG WEB_PHP_VERSION
 from litespeedtech/openlitespeed:${WEB_SERVER_VERSION}-lsphp${WEB_PHP_VERSION}
+COPY ./script/cmd.sh /cmd.sh
+RUN chmod +x /cmd.sh
+CMD ["/cmd.sh"]

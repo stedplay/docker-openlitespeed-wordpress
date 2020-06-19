@@ -5,6 +5,7 @@ services:
       args:
         DB_SERVER_VERSION: ${DB_SERVER_VERSION}
       context: ./db/
+#    container_name: ${DB_HOST}   # Use when DB_HOST!=db
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_USER: ${DB_USER}

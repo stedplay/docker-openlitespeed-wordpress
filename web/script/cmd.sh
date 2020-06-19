@@ -1,7 +1,10 @@
 document_root_path=/var/www/vhosts/localhost/html/
 wordpress_siteurl_path=${document_root_path%/}${WORDPRESS_SITEURL_DIR%/}/
+wordpress_home_path=${document_root_path%/}${WORDPRESS_HOME_DIR%/}/
+wordpress_install_dir=${WORDPRESS_SITEURL_DIR#${WORDPRESS_HOME_DIR%/}}
 wordpress_scheme_authority=${WEB_HTML_SCHEME}://${WEB_HTML_FQDN}:${WEB_HTML_PORT}
 wordpress_siteurl_url=${wordpress_scheme_authority}${WORDPRESS_SITEURL_DIR}
+wordpress_home_url=${wordpress_scheme_authority}${WORDPRESS_HOME_DIR}
 
 if ! wp core is-installed --path=${wordpress_siteurl_path} --allow-root; then
   # Download wordpress.
@@ -21,4 +24,9 @@ if ! wp core is-installed --path=${wordpress_siteurl_path} --allow-root; then
   wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST} --dbprefix=${DB_PREFIX} --allow-root
   # Install wordpress.
   wp core install --title=${WORDPRESS_TITLE} --admin_user=${WORDPRESS_USER} --admin_password=${WORDPRESS_PASSWORD} --admin_email=${WORDPRESS_EMAIL} --url=${wordpress_siteurl_url} --allow-root
+
+  # Make it possible to access using only the domain.
+  cp -p ./index.php ${wordpress_home_path}
+  sed -i "s#/wp-blog-header.php#${wordpress_install_dir%/}/wp-blog-header.php#" ${wordpress_home_path}index.php
+  wp option update home ${wordpress_home_url} --allow-root
 fi

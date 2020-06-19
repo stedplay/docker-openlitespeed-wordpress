@@ -18,7 +18,7 @@ $ docker-compose up -d
 
 ### Access management portal of wordpress
 
-1. Access to http://localhost:8080/wp-admin/
+1. Access to http://localhost:8080/wordpress/wp-admin/
 
 2. Login to wordpress with wp_user/wp_pw
 

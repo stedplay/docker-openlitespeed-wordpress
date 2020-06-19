@@ -29,4 +29,9 @@ if ! wp core is-installed --path=${wordpress_siteurl_path} --allow-root; then
   cp -p ./index.php ${wordpress_home_path}
   sed -i "s#/wp-blog-header.php#${wordpress_install_dir%/}/wp-blog-header.php#" ${wordpress_home_path}index.php
   wp option update home ${wordpress_home_url} --allow-root
+
+  # To avoid Connection Information dialog when installing plugin,
+  # change owner of document root and wp-admin/includes/file.php to lsadm.
+  chown --recursive lsadm:lsadm ${document_root_path}
+  /usr/local/lsws/bin/lswsctrl restart
 fi

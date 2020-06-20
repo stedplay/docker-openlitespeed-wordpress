@@ -61,6 +61,7 @@ services:
       DB_USER: "${DB_USER}"
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_HOST: "${DB_HOST}"
+      DB_PREFIX: "${DB_PREFIX}"
       WEB_HTML_SCHEME: "${WEB_HTML_SCHEME}"
       WEB_HTML_FQDN: "${WEB_HTML_FQDN}"
       WEB_HTML_PORT: "${WEB_HTML_PORT}"

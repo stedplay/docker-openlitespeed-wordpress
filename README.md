@@ -55,7 +55,8 @@ $
 Edit following variables according to remote environment.
 
 ```
-$ cat .env | grep -e WEB_HTML_SCHEME -e WEB_HTML_EXPOSE_PORT -e WORDPRESS_SITEURL_DIR
+$ cat .env | grep -e DB_PREFIX -e WEB_HTML_SCHEME -e WEB_HTML_EXPOSE_PORT -e WORDPRESS_SITEURL_DIR
+DB_PREFIX=wp_
 WEB_HTML_SCHEME=https
 WEB_HTML_EXPOSE_PORT=443
 WORDPRESS_SITEURL_DIR=/wordpress
@@ -111,7 +112,7 @@ movefile.yml.template
 
 ```
 /html# cd /var/www/html${WORDPRESS_SITEURL_DIR}
-/var/www/html/wordpress# wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST} --allow-root
+/var/www/html/wordpress# wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST} --dbprefix=${DB_PREFIX} --allow-root
 /var/www/html/wordpress# ls -1 wp-config.php
 wp-config.php
 /var/www/html/wordpress# exit

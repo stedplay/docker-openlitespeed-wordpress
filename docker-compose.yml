@@ -1,0 +1,73 @@
+version: '3'
+services:
+  db:
+    build:
+      args:
+        DB_SERVER_VERSION: ${DB_SERVER_VERSION}
+      context: ./db/
+#    container_name: ${DB_HOST}   # Use when DB_HOST!=db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - ./db/mysql/:/var/lib/mysql/
+
+  web:
+    build:
+      args:
+        WEB_SERVER_VERSION: ${WEB_SERVER_VERSION}
+        WEB_PHP_VERSION: ${WEB_PHP_VERSION}
+        WEB_PHP_UPLOAD_MAX_FILESIZE: ${WEB_PHP_UPLOAD_MAX_FILESIZE}
+      context: ./web/
+    depends_on:
+      - db
+    environment:
+      LOCALE: ${LOCALE}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PREFIX: ${DB_PREFIX}
+      WEB_HTML_SCHEME: ${WEB_HTML_SCHEME}
+      WEB_HTML_FQDN: ${WEB_HTML_FQDN}
+      WEB_HTML_PORT: ${WEB_HTML_PORT}
+      WORDPRESS_INITIAL_INSTALL: ${WORDPRESS_INITIAL_INSTALL}
+      WORDPRESS_VERSION: ${WORDPRESS_VERSION}
+      WORDPRESS_SITEURL_DIR: ${WORDPRESS_SITEURL_DIR}
+      WORDPRESS_HOME_DIR: ${WORDPRESS_HOME_DIR}
+      WORDPRESS_TITLE: ${WORDPRESS_TITLE}
+      WORDPRESS_USER: ${WORDPRESS_USER}
+      WORDPRESS_PASSWORD: ${WORDPRESS_PASSWORD}
+      WORDPRESS_EMAIL: ${WORDPRESS_EMAIL}
+    ports:
+      - ${WEB_SERVER_PORT}:7080
+      - ${WEB_HTML_PORT}:${WEB_HTML_EXPOSE_PORT}
+    volumes:
+      - ./web/lsws/admin/conf/:/usr/local/lsws/admin/conf/
+      - ./web/lsws/conf/:/usr/local/lsws/conf/
+      - ./web/html/:/var/www/vhosts/localhost/html/
+
+  migrator:
+    build:
+      args:
+        MIGRATOR_PHP_VERSION: ${MIGRATOR_PHP_VERSION}
+      context: ./migrator/
+    depends_on:
+      - web
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PREFIX: ${DB_PREFIX}
+      WEB_HTML_SCHEME: ${WEB_HTML_SCHEME}
+      WEB_HTML_FQDN: ${WEB_HTML_FQDN}
+      WEB_HTML_PORT: ${WEB_HTML_PORT}
+      WORDPRESS_SITEURL_DIR: ${WORDPRESS_SITEURL_DIR}
+    tty: true
+    volumes:
+      - ./migrator/conf/:/html/
+      - ./web/html/:/var/www/html/
+      - ~/.ssh:/tmp/.ssh

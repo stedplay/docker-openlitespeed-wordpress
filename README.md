@@ -2,6 +2,13 @@
 
 ## Usage
 
+### Clone this repository
+
+```
+$ git clone https://github.com/stedplay/docker-openlitespeed-wordpress.git site_name/
+$ cd site_name/
+```
+
 ### Prepare wordpress environment
 
 There are two ways to prepare the wordpress environment.

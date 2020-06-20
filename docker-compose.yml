@@ -57,15 +57,15 @@ services:
     depends_on:
       - web
     environment:
-      DB_HOST: "${DB_HOST}"
-      DB_USER: "${DB_USER}"
-      DB_PASSWORD: "${DB_PASSWORD}"
-      DB_NAME: "${DB_NAME}"
-      DB_PREFIX: "${DB_PREFIX}"
-      WEB_HTML_SCHEME: "${WEB_HTML_SCHEME}"
-      WEB_HTML_FQDN: "${WEB_HTML_FQDN}"
-      WEB_HTML_PORT: "${WEB_HTML_PORT}"
-      WORDPRESS_SITEURL_DIR: "${WORDPRESS_SITEURL_DIR}"
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PREFIX: ${DB_PREFIX}
+      WEB_HTML_SCHEME: ${WEB_HTML_SCHEME}
+      WEB_HTML_FQDN: ${WEB_HTML_FQDN}
+      WEB_HTML_PORT: ${WEB_HTML_PORT}
+      WORDPRESS_SITEURL_DIR: ${WORDPRESS_SITEURL_DIR}
     tty: true
     volumes:
       - ./migrator/conf/:/html/

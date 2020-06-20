@@ -110,30 +110,11 @@ movefile.yml.template
 ##### Create wp-config.php
 
 ```
-/html# cd /var/www/html/
-/var/www/html# cp -p .${WORDPRESS_SITEURL_DIR}/wp-config-sample.php .${WORDPRESS_SITEURL_DIR}/wp-config.php
-/var/www/html# sed -i s/database_name_here/${DB_NAME}/ .${WORDPRESS_SITEURL_DIR}/wp-config.php
-/var/www/html# sed -i s/username_here/${DB_USER}/ .${WORDPRESS_SITEURL_DIR}/wp-config.php
-/var/www/html# sed -i s/password_here/${DB_PASSWORD}/ .${WORDPRESS_SITEURL_DIR}/wp-config.php
-/var/www/html# sed -i s/localhost/${DB_HOST}/ .${WORDPRESS_SITEURL_DIR}/wp-config.php
-/var/www/html# diff .${WORDPRESS_SITEURL_DIR}/wp-config-sample.php .${WORDPRESS_SITEURL_DIR}/wp-config.php
-29c29
-< define('DB_NAME', 'database_name_here');
----
-> define('DB_NAME', 'db_name');
-32c32
-< define('DB_USER', 'username_here');
----
-> define('DB_USER', 'db_user');
-35c35
-< define('DB_PASSWORD', 'password_here');
----
-> define('DB_PASSWORD', 'db_pw');
-38c38
-< define('DB_HOST', 'localhost');
----
-> define('DB_HOST', 'db');
-/var/www/html# exit
+/html# cd /var/www/html${WORDPRESS_SITEURL_DIR}
+/var/www/html/wordpress# wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST} --allow-root
+/var/www/html/wordpress# ls -1 wp-config.php
+wp-config.php
+/var/www/html/wordpress# exit
 $
 ```
 
